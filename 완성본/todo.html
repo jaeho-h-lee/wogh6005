@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TodoApp</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/todo.css" />
+  </head>
+  <body>
+    <main class="todo-container">
+      <h2 class="todo-tit">오늘, 할일</h2>
+      <form class="todo-form">
+        <input
+          class="todo-input"
+          type="text"
+          name="todoTxt"
+          placeholder="오늘 할 일을 입력해주세요!"
+        />
+        <button type="submit" class="add-todo-btn">추가</button>
+      </form>
+      <ul class="todo-list">
+        <li class="todo-item">
+          <label>
+            <input type="checkbox" />
+            <span>todo 1</span>
+          </label>
+        </li>
+      </ul>
+    </main>
+
+    <script>
+      document
+        .querySelector(".todo-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const input = document.querySelector(".todo-input");
+          const todoText = input.value.trim();
+
+          if (todoText !== "") {
+            const newTodoItem = document.createElement("li");
+            newTodoItem.classList.add("todo-item");
+
+            const label = document.createElement("label");
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+
+            const span = document.createElement("span");
+            span.textContent = todoText;
+
+            label.appendChild(checkbox);
+            label.appendChild(span);
+            newTodoItem.appendChild(label);
+
+            document.querySelector(".todo-list").appendChild(newTodoItem);
+
+            input.value = "";
+          }
+        });
+    </script>
+  </body>
+</html>
